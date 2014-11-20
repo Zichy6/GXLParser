@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<graph>
+  <node id="node1">
+    <string> gxl-1.0</string>
+  </node>
+  <node id="node2">
+    <string> gxl-2.0</string>
+  </node>
+  <node id="node3">
+    <string> gxl-3.0</string>
+  </node>
+</graph> 

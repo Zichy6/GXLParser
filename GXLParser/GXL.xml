@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gxl SYSTEM "http://www.gupro.de/GXL/gxl-1.0.dtd">
+<!-- simple example 05.02.2002 -->
+<gxl xmlns:xlink=" http://www.w3.org/1999/xlink">
+  <graph id="GRAPH1" edgeids=" true" edgemode=" directed" hypergraph=" false">
+    <type xlink:href="HREF GRAFU1" xlink:type=" simple"/>
+    <node id="p">
+      <type xlink:href="HREF NODU P" xlink:type=" simple"/>
+      <attr name=" file">
+        <string> main.c</string>
+      </attr>
+      <attr name="cec">
+        <seq>
+          <seq>
+            <bag>
+              <int>66</int>
+            </bag>
+            <int>13</int>
+          </seq>
+        </seq>
+      </attr>
+      <attr name="ce">
+        <enum>c</enum>
+      </attr>
+      <attr name="locatr">
+        <locator xlink:href="cec" xlink:type="simple"/>
+      </attr>
+    </node>
+    <node id="q">
+      <type xlink:href="HREF NODU Q" xlink:type=" simple"/>
+      <attr name=" file">
+        <string> test.c</string>
+      </attr>
+    </node>
+    <node id="v">
+      <type xlink:href="HREF NODU v" xlink:type=" simple"/>
+      <attr name=" line">
+        <int> 225</int>
+      </attr>
+      <attr name="attrLocator">
+        <locator xlink:href="HREF locatoru" xlink:type="simple"/>
+      </attr>
+    </node>
+    <node id="w">
+      <type xlink:href="HREF NODU w" xlink:type=" simple"/>
+      <attr name=" line">
+        <int> 316</int>
+      </attr>
+    </node>
+    <edge id="r1" to="v" from="p">
+      <type xlink:href="HREF edge r1" xlink:type=" simple"/>
+      <attr name=" line">
+        <int> 127</int>
+      </attr>
+    </edge>
+    <edge id="r2" to="w" from="q">
+      <type xlink:href="HREF edge r2" xlink:type=" simple"/>
+      <attr name=" line">
+        <int> 27</int>
+      </attr>
+    </edge>
+    <edge id="c" to="q" from="p">
+      <type xlink:href="HREF edge c" xlink:type=" simple"/>
+      <attr name=" line">
+        <int> 42</int>
+      </attr>
+    </edge>
+    <rel id="rel" isdirected="true">
+      <attr name="attrRel">
+        <bool>1</bool>
+      </attr>
+    </rel>
+  </graph>
+  <graph id="GRAPH2" edgeids=" true" edgemode=" directed" hypergraph=" false">
+    <type xlink:href="g2n1" xlink:type=" simple"/>
+    <node id="g2n1">
+      <type xlink:href="HREF g2n1" xlink:type=" simple"/>
+    </node>
+  </graph>
+</gxl>
