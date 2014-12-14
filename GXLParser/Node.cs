@@ -13,6 +13,12 @@ namespace GXLParser
         private List<Attr> Attr;
         private List<Graph> Graph;
 
+
+        public string getNodeID()
+        {
+            return ID;
+        }
+
         public Node(string id)
         {
             ID = id;
@@ -28,6 +34,33 @@ namespace GXLParser
         public void AddGraph(Graph grp)
         {
             Graph.Add(grp);
+        }
+
+        public void listOfNodes(Node node)
+        {
+            List<Node> nodes = new List<Node>();
+            nodes.Add(node);
+            foreach (Node node1 in nodes)
+            {
+                Console.WriteLine(node);
+            }
+
+        }
+
+        public string getList()
+        {
+            string list = "";
+            if (Graph.Count != 0)
+            {
+                foreach (Graph g1 in Graph)
+                {
+                    list += "\n";
+                    list += "List pro vnořený graf " + g1.ID + " v nodu jest: \n";
+                    list += g1.getList();
+                }
+            }
+
+            return list;
         }
 
         public override string ToString()

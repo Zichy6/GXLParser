@@ -43,7 +43,7 @@ namespace GXLParser
 
         public override string ToString()
         {
-            string result = "REL ID: " + ID + " idDirecte: " + this.IsDirected + " " + this.Type;
+            string result = "REL ID: " + ID + " idDirected: " + this.IsDirected + " " + this.Type;
             foreach (Attr attrs in this.Attr)
             {
                 result += attrs;

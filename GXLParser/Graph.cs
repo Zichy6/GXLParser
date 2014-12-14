@@ -8,20 +8,22 @@ namespace GXLParser
 {
     class Graph
     {
-        private string ID;
+        public string ID { get; set; }
+        private string Role;
         private bool Edgeids;
         private string Edgemode;
         private bool Hypergraph;
 
         public string Type { get; set; }
-        List<Attr> Attr;
-        List<Node> Node;
-        List<Edge> Edge;
-        List<Rel> Rel;
+        private List<Attr> Attr;
+        private List<Node> Node;
+        private List<Edge> Edge;
+        private List<Rel> Rel;
 
-        public Graph(string id, bool edgeids, string edgemode, bool hypergraph)
+        public Graph(string id, string role, bool edgeids, string edgemode, bool hypergraph)
         {
             ID = id;
+            Role = role;
             Edgeids = edgeids;
             Edgemode = edgemode;
             Hypergraph = hypergraph;
@@ -51,9 +53,65 @@ namespace GXLParser
             Rel.Add(rel);
         }
 
+        public string getList()
+        {
+            string list = "";
+
+            foreach (Node n in Node)
+            {
+                list += n.getNodeID();
+                foreach (Node n2 in Node)
+                {
+                    if (spojenka(n.getNodeID(), n2.getNodeID()))
+                    {
+                        list += " -> " + n2.getNodeID();
+                    }
+                }
+                list += "\n";
+            }
+
+            foreach (Node n in Node)
+            {
+                list += n.getList();
+            }
+
+            foreach (Edge e in Edge)
+            {
+
+                list += e.getList();
+                
+            }
+
+            return list;
+        }
+
+        public bool spojenka(string id1, string id2)
+        {
+            // melo by fungovat
+            string directed = "directed";
+            bool Ok = false;
+            foreach (Edge edges in Edge)
+            {
+                //pro orientovany graf
+                if (Edgemode == directed)
+                {
+                    if (id1 == edges.From && id2 == edges.To)
+                        Ok = true;
+                }
+                //pro neorientovany graf
+                else
+                {
+                    if (id1 == edges.From && id2 == edges.To || id1 == edges.To && id2 == edges.From)
+                        Ok = true;
+                }
+            }
+            return Ok;
+        }
+
         public override string ToString()
         {
-            string result = "GRAPH ID: " + this.ID + " edgeids: " + this.Edgeids + " edgemode:" + this.Edgemode + " hypergraph: " + this.Hypergraph + this.Type;
+            string result = "Našel jsem GRAF: \n";
+            result += "jeho ID: " + this.ID + " edgeids: " + this.Edgeids + " role: " + this.Role + " edgemode:" + this.Edgemode + " hypergraph: " + this.Hypergraph + this.Type;
             
             foreach (Attr attrs in this.Attr)
             {

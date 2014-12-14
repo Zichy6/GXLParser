@@ -31,6 +31,13 @@
       <attr name=" file">
         <string> test.c</string>
       </attr>
+      <graph id="NQG1">
+        <node id="EDGEVNODUVGRAFU">
+          <attr name="attrGravVnoreny">
+            <bool>1</bool>
+          </attr>
+        </node>
+      </graph>
     </node>
     <node id="v">
       <type xlink:href="HREF NODU v" xlink:type=" simple"/>
@@ -64,11 +71,25 @@
       <attr name=" line">
         <int> 42</int>
       </attr>
+      <graph id="GRAPHeDGE"></graph>
     </edge>
     <rel id="rel" isdirected="true">
       <attr name="attrRel">
         <bool>1</bool>
       </attr>
+      <graph id="graphRel">
+        <attr name="grapvrelu">
+          <string>GraphRelu</string>
+        </attr>
+      </graph>
+      <relend direction="in" endorder="Jo" role="No" startorder="Ju" target="c">
+        <attr name="relendik">
+          <locator xlink:href="relendLocator" xlink:type="simple"/>
+        </attr>
+        <attr name="enumikRelendik">
+          <enum>Enumik</enum>
+        </attr>
+      </relend>
     </rel>
   </graph>
   <graph id="GRAPH2" edgeids=" true" edgemode=" directed" hypergraph=" false">

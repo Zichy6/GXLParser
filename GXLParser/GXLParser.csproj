@@ -42,16 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attr.cs" />
+    <Compile Include="AttrValues.cs" />
     <Compile Include="Edge.cs" />
     <Compile Include="Graph.cs" />
-    <Compile Include="GraphElement.cs" />
     <Compile Include="GXL.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rel.cs" />
     <Compile Include="Relend.cs" />
-    <Compile Include="Type.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -60,11 +59,10 @@
     <Content Include="GXL.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="TEST.xml">
+    <None Include="SuperGXL.gxl" />
+    <Content Include="TEST2.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="TEST2.xml" />
-    <Content Include="TEST3.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

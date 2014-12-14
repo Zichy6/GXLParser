@@ -9,7 +9,7 @@ namespace GXLParser
 {
     class GXL
     {
-        List<Graph> Graph;
+        private List<Graph> Graph;
 
         public GXL()
         {
@@ -21,6 +21,16 @@ namespace GXLParser
             Graph.Add(graph);
         }
 
+        //Vypis vsech grafu do listu sousednosti
+        public void getListInfo()
+        {
+            foreach (Graph g in Graph)
+            {
+                Console.WriteLine("\nList sousednosti pro graf " + g.ID + " je:");
+                Console.WriteLine(g.getList());
+            }
+        }
+
         public override string ToString()
         {
             string result = "";
@@ -28,7 +38,6 @@ namespace GXLParser
             {
                 result += graphs;
             }
-            result += "------";
             return result;
         }
     }

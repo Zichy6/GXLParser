@@ -1,12 +1,74 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<graph>
-  <node id="node1">
-    <string> gxl-1.0</string>
-  </node>
-  <node id="node2">
-    <string> gxl-2.0</string>
-  </node>
-  <node id="node3">
-    <string> gxl-3.0</string>
-  </node>
-</graph> 
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gxl SYSTEM "http://www.gupro.de/GXL/gxl-1.0.dtd">
+<!-- simple example 05.02.2002 -->
+<gxl xmlns:xlink=" http://www.w3.org/1999/xlink">
+  <graph id="G1" edgemode="directed" role="cecik">
+    <node id="n1">
+      <attr name="a1">
+        <string> gxl-1.0</string>
+      </attr>
+    </node>
+    <node id="n2">
+      <attr name="a2">
+        <string> gxl-2.0</string>
+      </attr>
+      <attr name="vnoreny">
+        <set>
+          <set>
+            <bag>
+              <int>32</int>
+            </bag>
+          </set>
+        </set>
+      </attr>
+    </node>
+    <node id="n3">
+      <attr name="a2">
+        <string> gxl-3.0</string>
+      </attr>
+    </node>
+    <node id="ndg">
+      <graph id="grapInDaNode">
+        <node id="ceac"></node>
+        <node id="ceac1"></node>
+        <edge id="e222" from="ceac" to="ceac1"></edge>
+      </graph>
+    </node>
+    <edge id="e1" from="n1" to="n1" >
+      <graph id="g1e1"></graph>
+    </edge>
+    <edge id="e2" from="n1" to="n2"></edge>
+    <edge id="e3" from="n2" to ="n3"></edge>
+    <edge id="e4" from="n3" to ="n1"></edge>
+    <edge id="e5" from="n3" to="n3"></edge>
+    <rel id="rel"></rel>
+  </graph>
+  <graph id="cec">
+    <node id="n11">
+      <graph id="grapindanode">
+        <node id="nIndaG"></node>
+        <node id="jo"></node>
+        <edge id="eInDaG" from="nIndaG" to="jo"></edge>
+      </graph>
+    </node>
+    <edge id="e11" from="n11" to="n11"></edge>
+  </graph>
+  <graph id="undirectedG" edgemode="undirected">
+    <node id="i1"></node>
+    <node id="i2">
+      <graph id="GRAPO" edgemode="undirected">
+        <node id="ojoj" ></node>
+        <edge id="ee" from="ojoj" to="ojoj"></edge>
+      </graph>
+    </node>
+    <edge id="ecko1" from="i1" to="i2"></edge>
+    <edge id="ecko2" from="i1" to="i1">
+      <graph id="grafVEdzi">
+        <node id="nodas"></node>
+        <node id="nodas2"></node>
+        <edge id="edze1" from="nodas" to="nodas2"></edge>
+        <edge id="edze2" from=" nodas2" to ="nodas"></edge>
+      </graph>
+    </edge>
+  </graph>
+</gxl>

@@ -8,10 +8,11 @@ namespace GXLParser
 {
     class Attr
     {
-        public string ID;
-        public string Name;
-        public string Kind;
-        List<Attr> Attrs;
+        private string ID;
+        private string Name;
+        private string Kind;
+        private List<Attr> Attrs;
+
 
         public Attr(string name, string id, string kind)
         {
@@ -34,8 +35,6 @@ namespace GXLParser
                 result += attrs;
             }
             return result;
-            //return this.ID + " " + this.Name + " " + this.Kind + " " + this.Attrs;
         }
-
     }
 }

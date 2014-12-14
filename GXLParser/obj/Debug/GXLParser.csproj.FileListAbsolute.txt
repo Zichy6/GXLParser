@@ -1,6 +1,6 @@
 C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\bin\Debug\GXLParser.exe.config
 C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\bin\Debug\GXLParser.exe
 C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\bin\Debug\GXLParser.pdb
-C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\obj\Debug\GXLParser.csprojResolveAssemblyReference.cache
 C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\obj\Debug\GXLParser.exe
 C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\obj\Debug\GXLParser.pdb
+C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\obj\Debug\GXLParser.csprojResolveAssemblyReference.cache
