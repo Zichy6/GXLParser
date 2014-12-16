@@ -15,10 +15,14 @@ namespace GXLParser
         {
             XmlReaderSettings set = new XmlReaderSettings();
             set.DtdProcessing = DtdProcessing.Parse;
-            XmlReader reader = XmlReader.Create(@"C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\TEST2.xml", set);
+            XmlReader reader = XmlReader.Create(@"C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\Test2.gxl", set);
             ParseGXL(reader);
             
             gxl.getListInfo();
+            Space();
+            Console.WriteLine("Informace o hranách a uzlech:");
+            Space();
+            Console.WriteLine(gxl.getResultGraphs());
 
             Console.Read();
         }
@@ -72,8 +76,8 @@ namespace GXLParser
                                         string nodeType = subreader.GetAttribute("xlink:type");
                                         Console.WriteLine("Node Type: xlink:type: " + nodeType + " xlink:href " + node.Type);
                                         break;
-                                    case "attr":
-                                        ParseAttr(nodeReader);
+                                    case "attr":                                        
+                                        node.AddAttr(ParseAttr(nodeReader));
                                         break;
                                     case "graph":
                                         Graph gNode = new Graph(subreader.GetAttribute("id"), subreader.GetAttribute("role"), Convert.ToBoolean(subreader.GetAttribute("edgeids")), subreader.GetAttribute("edgemode"), Convert.ToBoolean(subreader.GetAttribute("hypergraph")));
@@ -86,6 +90,7 @@ namespace GXLParser
                                         break;
                                 }
                             }
+                            node.getData();
                         }
                         break;
                     case "edge":
@@ -166,23 +171,21 @@ namespace GXLParser
                                             }
                                         }
                                         break;
-
                                 }
-
                             }
                         }
                         break;
                 }
             }
-
         }
 
 
-        private static void ParseAttr(XmlReader reader)
+        private static Attr ParseAttr(XmlReader reader)
         {
+            Attr attr = new Attr(reader.GetAttribute("name"), reader.GetAttribute("id"), reader.GetAttribute("kind"));
             if (reader.NodeType == XmlNodeType.Element)
             {
-                Attr attr = new Attr(reader.GetAttribute("name"), reader.GetAttribute("id"), reader.GetAttribute("kind"));
+                
                 AttrValues val = new AttrValues();
                 List<Attr> attrs = new List<Attr>();
                 attrs.Add(attr);
@@ -197,33 +200,38 @@ namespace GXLParser
                     switch (attrReader.Name)
                     {
                         case "int":
-                            if (attrReader.NodeType == XmlNodeType.Element)
+                            if (attrReader.NodeType == XmlNodeType.Element && attrReader.NodeType != XmlNodeType.Whitespace)
                             {
-                                Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsInt());
+                                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsInt());
+                                attr.setValue(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "string":
                             if (attrReader.NodeType == XmlNodeType.Element)
                             {
-                                Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsString());
+                                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsString());
+                                attr.setValue(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "bool":
                             if (attrReader.NodeType == XmlNodeType.Element)
                             {
-                                Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsBoolean());
+                                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsBoolean());
+                                attr.setValue(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "float":
                             if (attrReader.NodeType == XmlNodeType.Element)
                             {
-                                Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsFloat());
+                               // Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsFloat());
+                                attr.setValue(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "enum":
                             if (attrReader.NodeType == XmlNodeType.Element)
                             {
-                                Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsString());
+                                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsString());
+                                attr.setValue(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "locator":
@@ -286,6 +294,20 @@ namespace GXLParser
                             {
                                 Space();
                                 Console.WriteLine("\tVnořený attr tup, který obsahuje: ");
+                                XmlReader attrSubReader = attrReader.ReadSubtree();
+                                while (attrSubReader.Read())
+                                {
+                                    switch (attrSubReader.Name)
+                                    {
+                                        case "int":
+                                            if (attrSubReader.NodeType == XmlNodeType.Element && attrSubReader.NodeType != XmlNodeType.Whitespace)
+                                            {
+                                                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsInt());
+                                                attr.setValue(attrReader.ReadElementContentAsString());
+                                            }
+                                            break;
+                                    }
+                                }
                                 //ParseAttr(reader);
                                 //counter++;
                             }
@@ -297,12 +319,14 @@ namespace GXLParser
                             break;
                     }
                 }
+                
             }
+            return attr;
         }
 
         private static void Space()
         {
-            Console.WriteLine("_____________________________");
+            Console.WriteLine("________________________________________________________________________________");
         }
     }
         

@@ -59,10 +59,12 @@
     <Content Include="GXL.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="SuperGXL.gxl" />
-    <Content Include="TEST2.xml">
+    <None Include="SuperGXL.gxl">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
+    <None Include="TEST2.gxl">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

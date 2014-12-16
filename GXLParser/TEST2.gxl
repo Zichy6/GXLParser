@@ -7,6 +7,15 @@
       <attr name="a1">
         <string> gxl-1.0</string>
       </attr>
+      <attr name="a2">
+        <int>1</int>
+      </attr>
+      <attr name="a3">
+        <tup>
+          <int>-1</int>
+          <int>0</int>
+        </tup>
+      </attr>
     </node>
     <node id="n2">
       <attr name="a2">

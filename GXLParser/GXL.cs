@@ -28,6 +28,7 @@ namespace GXLParser
             {
                 Console.WriteLine("\nList sousednosti pro graf " + g.ID + " je:");
                 Console.WriteLine(g.getList());
+                Console.WriteLine("________________________________________________________________________________");
             }
         }
 
@@ -38,6 +39,17 @@ namespace GXLParser
             {
                 result += graphs;
             }
+            return result;
+        }
+
+        public string getResultGraphs()
+        {
+            string result = "";
+            foreach (Graph graphes in Graph)
+            {
+                result += graphes.getResult();
+            }
+
             return result;
         }
     }

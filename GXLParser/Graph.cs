@@ -131,5 +131,21 @@ namespace GXLParser
             }
             return result;
         }
+
+        public string getResult()
+        {
+            string result = "";
+            foreach (Node nodes in Node)
+            {
+                result += nodes.getData();
+            }
+
+            foreach (Edge edges in Edge)
+            {
+                result += edges.getData();
+            }
+
+            return result;
+        }
     }
 }

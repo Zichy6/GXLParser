@@ -13,6 +13,8 @@ namespace GXLParser
         private string Kind;
         private List<Attr> Attrs;
 
+        private string value;
+
 
         public Attr(string name, string id, string kind)
         {
@@ -20,6 +22,11 @@ namespace GXLParser
             this.Name = name;
             this.Kind = kind;
             Attrs = new List<Attr>();
+        }
+
+        public void setValue(string val)
+        {
+            value = val;
         }
 
         public void AddAttr(Attr atr)
@@ -34,6 +41,14 @@ namespace GXLParser
             {
                 result += attrs;
             }
+            return result;
+        }
+
+        public string getData()
+        {
+            string result = "";
+            result += this.Name + ":" + this.value;
+
             return result;
         }
     }

@@ -84,5 +84,18 @@ namespace GXLParser
 
             return result;
         }
+
+        public string getData()
+        {
+            string result = "[";
+            result += this.ID + ":";
+            foreach (Attr a in Attr)
+            {
+                result += a.getData() + ";";
+            }
+            result += "]\n";
+
+            return result;
+        }
     }
 }

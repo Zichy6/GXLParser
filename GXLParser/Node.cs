@@ -13,7 +13,6 @@ namespace GXLParser
         private List<Attr> Attr;
         private List<Graph> Graph;
 
-
         public string getNodeID()
         {
             return ID;
@@ -77,6 +76,19 @@ namespace GXLParser
                 result += graphs;
             }
             return result; 
+        }
+
+        public string getData()
+        {
+            string result = "[";
+            result += this.ID + ":";
+            foreach (Attr a in Attr)
+            {
+                result += a.getData() + ";";
+            }
+            result += "]\n";
+
+            return result;
         }
 
     }
