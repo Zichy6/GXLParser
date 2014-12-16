@@ -15,7 +15,7 @@ namespace GXLParser
         {
             XmlReaderSettings set = new XmlReaderSettings();
             set.DtdProcessing = DtdProcessing.Parse;
-            XmlReader reader = XmlReader.Create(@"C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\Test2.gxl", set);
+            XmlReader reader = XmlReader.Create(@"C:\Users\Crossfire\Documents\Visual Studio 2012\Projects\GXLParser\GXLParser\TEST2.gxl", set);
             ParseGXL(reader);
             
             gxl.getListInfo();
@@ -76,8 +76,9 @@ namespace GXLParser
                                         string nodeType = subreader.GetAttribute("xlink:type");
                                         Console.WriteLine("Node Type: xlink:type: " + nodeType + " xlink:href " + node.Type);
                                         break;
-                                    case "attr":                                        
-                                        node.AddAttr(ParseAttr(nodeReader));
+                                    case "attr":
+                                        Attr attrEdge = new Attr(nodeReader.GetAttribute("name"), nodeReader.GetAttribute("id"), nodeReader.GetAttribute("kind"));
+                                        node.AddAttr(ParseAttr(nodeReader, attrEdge));
                                         break;
                                     case "graph":
                                         Graph gNode = new Graph(subreader.GetAttribute("id"), subreader.GetAttribute("role"), Convert.ToBoolean(subreader.GetAttribute("edgeids")), subreader.GetAttribute("edgemode"), Convert.ToBoolean(subreader.GetAttribute("hypergraph")));
@@ -110,7 +111,8 @@ namespace GXLParser
                                         Console.WriteLine("EDGE Type: xlink:type: " + nodeType + " xlink:href " + edge.Type);
                                         break;
                                     case "attr":
-                                        ParseAttr(edgeReader);
+                                        Attr attrEdge = new Attr(edgeReader.GetAttribute("name"), edgeReader.GetAttribute("id"), edgeReader.GetAttribute("kind"));
+                                        edge.AddAttr(ParseAttr(edgeReader, attrEdge));
                                         break;
                                     case "graph":
                                         Graph gEdge = new Graph(subreader.GetAttribute("id"), subreader.GetAttribute("role"), Convert.ToBoolean(subreader.GetAttribute("edgeids")), subreader.GetAttribute("edgemode"), Convert.ToBoolean(subreader.GetAttribute("hypergraph")));
@@ -142,7 +144,8 @@ namespace GXLParser
                                         Console.WriteLine("REL Type: xlink:type: " + nodeType + " xlink:href " + rel.Type);
                                         break;
                                     case "attr":
-                                        ParseAttr(relReader);
+                                        Attr attrRel = new Attr(relReader.GetAttribute("name"), relReader.GetAttribute("id"), relReader.GetAttribute("kind"));
+                                        ParseAttr(relReader, attrRel);
                                         break;
                                     case "graph":
                                         Graph gRel = new Graph(subreader.GetAttribute("id"), subreader.GetAttribute("role"), Convert.ToBoolean(subreader.GetAttribute("edgeids")), subreader.GetAttribute("edgemode"), Convert.ToBoolean(subreader.GetAttribute("hypergraph")));
@@ -165,7 +168,8 @@ namespace GXLParser
                                                 switch (relendReader.Name)
                                                 {
                                                     case "attr":
-                                                        ParseAttr(relReader);
+                                                        Attr attrRelend = new Attr(relendReader.GetAttribute("name"), relendReader.GetAttribute("id"), relendReader.GetAttribute("kind"));
+                                                        ParseAttr(relReader, attrRelend);
                                                         break;
                                                 }
                                             }
@@ -180,9 +184,8 @@ namespace GXLParser
         }
 
 
-        private static Attr ParseAttr(XmlReader reader)
+        private static Attr ParseAttr(XmlReader reader, Attr attr)
         {
-            Attr attr = new Attr(reader.GetAttribute("name"), reader.GetAttribute("id"), reader.GetAttribute("kind"));
             if (reader.NodeType == XmlNodeType.Element)
             {
                 
@@ -202,15 +205,17 @@ namespace GXLParser
                         case "int":
                             if (attrReader.NodeType == XmlNodeType.Element && attrReader.NodeType != XmlNodeType.Whitespace)
                             {
+                                Attr attrInt = new Attr(attrReader.GetAttribute("name"), attrReader.GetAttribute("id"), attrReader.GetAttribute("kind"));
                                 //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsInt());
-                                attr.setValue(attrReader.ReadElementContentAsString());
+                                attr.AddVal(attrReader.ReadElementContentAsString());
+                                //attr.setValue(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "string":
                             if (attrReader.NodeType == XmlNodeType.Element)
                             {
                                 //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsString());
-                                attr.setValue(attrReader.ReadElementContentAsString());
+                                attr.AddVal(attrReader.ReadElementContentAsString());
                             }
                             break;
                         case "bool":
@@ -292,22 +297,25 @@ namespace GXLParser
                         case "tup":
                             if (attrReader.NodeType == XmlNodeType.Element)
                             {
+                                Attr attrTup = new Attr(attrReader.GetAttribute("name"), attrReader.GetAttribute("id"), attrReader.GetAttribute("kind"));
                                 Space();
                                 Console.WriteLine("\tVnořený attr tup, který obsahuje: ");
-                                XmlReader attrSubReader = attrReader.ReadSubtree();
-                                while (attrSubReader.Read())
-                                {
-                                    switch (attrSubReader.Name)
-                                    {
-                                        case "int":
-                                            if (attrSubReader.NodeType == XmlNodeType.Element && attrSubReader.NodeType != XmlNodeType.Whitespace)
-                                            {
-                                                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsInt());
-                                                attr.setValue(attrReader.ReadElementContentAsString());
-                                            }
-                                            break;
-                                    }
-                                }
+                                
+                                //ParseAttr(attrReader, attrTup);
+                                //XmlReader attrSubReader = attrReader.ReadSubtree();
+                                //while (attrSubReader.Read())
+                                //{
+                                //    switch (attrSubReader.Name)
+                                //    {
+                                //        case "int":
+                                //            if (attrSubReader.NodeType == XmlNodeType.Element && attrSubReader.NodeType != XmlNodeType.Whitespace)
+                                //            {
+                                //                //Console.WriteLine("ATTR type: " + attrReader.Name + " VALUE: " + attrReader.ReadElementContentAsInt());
+                                //                attr.setValue(attrReader.ReadElementContentAsString());
+                                //            }
+                                //            break;
+                                //    }
+                                //}
                                 //ParseAttr(reader);
                                 //counter++;
                             }

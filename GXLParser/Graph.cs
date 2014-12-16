@@ -135,6 +135,7 @@ namespace GXLParser
         public string getResult()
         {
             string result = "";
+
             foreach (Node nodes in Node)
             {
                 result += nodes.getData();

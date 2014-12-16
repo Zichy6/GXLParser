@@ -14,7 +14,7 @@ namespace GXLParser
         private List<Attr> Attrs;
 
         private string value;
-
+        private List<string> values;
 
         public Attr(string name, string id, string kind)
         {
@@ -22,6 +22,7 @@ namespace GXLParser
             this.Name = name;
             this.Kind = kind;
             Attrs = new List<Attr>();
+            values = new List<string>();
         }
 
         public void setValue(string val)
@@ -32,6 +33,11 @@ namespace GXLParser
         public void AddAttr(Attr atr)
         {
             Attrs.Add(atr);
+        }
+
+        public void AddVal(string val)
+        {
+            values.Add(val);
         }
 
         public override string ToString()
@@ -48,6 +54,12 @@ namespace GXLParser
         {
             string result = "";
             result += this.Name + ":" + this.value;
+
+            foreach (string Val in values)
+            {
+                result += Val;
+                //result += " | ";
+            }
 
             return result;
         }

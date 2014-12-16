@@ -2,49 +2,50 @@
 <!DOCTYPE gxl SYSTEM "http://www.gupro.de/GXL/gxl-1.0.dtd">
 <!-- simple example 05.02.2002 -->
 <gxl xmlns:xlink=" http://www.w3.org/1999/xlink">
-  <graph id="G1" edgemode="directed" role="cecik">
+  <graph id="G1" edgemode="directed" role="rolicka">
     <node id="n1">
       <attr name="a1">
         <string> gxl-1.0</string>
       </attr>
       <attr name="a2">
-        <int>1</int>
+        <int> 1</int>
       </attr>
       <attr name="a3">
         <tup>
-          <int>-1</int>
-          <int>0</int>
+          <int> -1</int>
+          <int> 0</int>
         </tup>
       </attr>
     </node>
     <node id="n2">
-      <attr name="a2">
+      <attr name="a4">
         <string> gxl-2.0</string>
       </attr>
-      <attr name="vnoreny">
+      <attr name="vnorenyAttr">
         <set>
           <set>
             <bag>
-              <int>32</int>
+              <int> 32</int>
             </bag>
           </set>
         </set>
       </attr>
     </node>
     <node id="n3">
-      <attr name="a2">
+      <attr name="a5">
         <string> gxl-3.0</string>
       </attr>
     </node>
-    <node id="ndg">
-      <graph id="grapInDaNode">
-        <node id="ceac"></node>
-        <node id="ceac1"></node>
-        <edge id="e222" from="ceac" to="ceac1"></edge>
+    <node id="n4">
+      <graph id="grafVnodu">
+        <node id="g2n1"></node>
+        <node id="g2n2"></node>
+        <edge id="g2e1" from="g2n1" to="g2n2"></edge>
       </graph>
     </node>
     <edge id="e1" from="n1" to="n1" >
-      <graph id="g1e1"></graph>
+      <graph id="grafVedge">
+      </graph>
     </edge>
     <edge id="e2" from="n1" to="n2"></edge>
     <edge id="e3" from="n2" to ="n3"></edge>
@@ -52,32 +53,43 @@
     <edge id="e5" from="n3" to="n3"></edge>
     <rel id="rel"></rel>
   </graph>
-  <graph id="cec">
-    <node id="n11">
-      <graph id="grapindanode">
-        <node id="nIndaG"></node>
-        <node id="jo"></node>
-        <edge id="eInDaG" from="nIndaG" to="jo"></edge>
-      </graph>
-    </node>
-    <edge id="e11" from="n11" to="n11"></edge>
-  </graph>
   <graph id="undirectedG" edgemode="undirected">
     <node id="i1"></node>
-    <node id="i2">
-      <graph id="GRAPO" edgemode="undirected">
-        <node id="ojoj" ></node>
-        <edge id="ee" from="ojoj" to="ojoj"></edge>
-      </graph>
-    </node>
+    <node id="i2"></node>
+    <node id="i3"></node>
+    <node id="i4"></node>
     <edge id="ecko1" from="i1" to="i2"></edge>
     <edge id="ecko2" from="i1" to="i1">
       <graph id="grafVEdzi">
-        <node id="nodas"></node>
-        <node id="nodas2"></node>
-        <edge id="edze1" from="nodas" to="nodas2"></edge>
-        <edge id="edze2" from=" nodas2" to ="nodas"></edge>
+        <node id="g3n1"></node>
+        <node id="g3n2"></node>
+        <edge id="g3e1" from="g3n1" to="g3n2"></edge>
+        <edge id="g3e2" from=" g3n2" to ="g3n1"></edge>
       </graph>
+    </edge>
+    <edge id="e141" to="i3" from="i4">
+      <type xlink:href="#isA" xlink:type=" simple"/>
+    </edge>
+    <edge id="e142" to="i4" from="i1">
+      <type xlink:href="#from" xlink:type=" simple"/>
+      <attr name=" limits">
+        <tup>
+          <int> 0</int>
+          <int> -1</int>
+        </tup>
+      </attr>
+      <attr name=" isordered">
+        <bool> false</bool>
+      </attr>
+      <attr name="string">
+        <string> string</string>
+      </attr>
+      <attr name="tup">
+        <bag>
+          <int> 1</int>
+          <int> 0</int>
+        </bag>
+      </attr>
     </edge>
   </graph>
 </gxl>
